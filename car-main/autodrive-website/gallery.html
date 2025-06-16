@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery - AutoDrive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #111;
+      color: #fff;
+      padding: 40px;
+      scroll-behavior: smooth;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #00adee;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .grid-item {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    .grid-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .grid img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      transition: transform 0.3s;
+    }
+    .grid-item:hover img {
+      transform: scale(1.05);
+    }
+    .car-name {
+      font-weight: bold;
+      color: #00adee;
+    }
+    a {
+      display: block;
+      margin: 40px 0 0;
+      text-align: center;
+      color: #00adee;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #008fbe;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h2>Gallery</h2>
+
+  <section id="suv">
+    <h2>SUV</h2>
+    <div class="grid">
+      <div class="grid-item"><img src="images/suv1.jpg" alt="SUV 1"><div class="car-name">Toyota Fortuner</div></div>
+      <div class="grid-item"><img src="images/suv2.jpg" alt="SUV 2"><div class="car-name">Jeep Compass</div></div>
+      <div class="grid-item"><img src="images/suv3.jpg" alt="SUV 3"><div class="car-name">Mahindra XUV700</div></div>
+    </div>
+  </section>
+
+  <section id="sedan">
+    <h2>Sedan</h2>
+    <div class="grid">
+      <div class="grid-item"><img src="images/sedan1.jpg" alt="Sedan 1"><div class="car-name">Honda City</div></div>
+      <div class="grid-item"><img src="images/sedan2.jpg" alt="Sedan 2"><div class="car-name">Hyundai Verna</div></div>
+      <div class="grid-item"><img src="images/sedan3.jpg" alt="Sedan 3"><div class="car-name">Skoda Slavia</div></div>
+    </div>
+  </section>
+
+  <section id="sports">
+    <h2>Sports</h2>
+    <div class="grid">
+      <div class="grid-item"><img src="images/sports1.jpg" alt="Sports 1"><div class="car-name">Lamborghini Huracán</div></div>
+      <div class="grid-item"><img src="images/sports2.jpg" alt="Sports 2"><div class="car-name">Ferrari 488 GTB</div></div>
+      <div class="grid-item"><img src="images/sports3.jpg" alt="Sports 3"><div class="car-name">Porsche 911 Turbo</div></div>
+    </div>
+  </section>
+
+  <section id="ev">
+    <h2>Electric Vehicles (EV)</h2>
+    <div class="grid">
+      <div class="grid-item"><img src="images/ev1.jpg" alt="EV 1"><div class="car-name">Tesla Model 3</div></div>
+      <div class="grid-item"><img src="images/ev2.jpg" alt="EV 2"><div class="car-name">Tata Nexon EV</div></div>
+      <div class="grid-item"><img src="images/ev3.jpg" alt="EV 3"><div class="car-name">Hyundai Ioniq 5</div></div>
+    </div>
+  </section>
+
+  <a href="index.html">← Back to Home</a>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.grid-item').forEach(item => {
+      observer.observe(item);
+    });
+  </script>
+</body>
+</html>

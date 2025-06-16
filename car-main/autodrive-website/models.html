@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoDrive - Models</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #111;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; border-radius: 10px; }
+
+    header {
+      position: sticky; top: 0;
+      background: #000;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      animation: slideDown 1s ease;
+    }
+
+    nav a {
+      margin: 0 15px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00adee;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #00adee;
+      animation: fadeInUp 1s ease;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .card {
+      background: #222;
+      border-radius: 10px;
+      width: 280px;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.6s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0,173,238,0.5);
+    }
+
+    .card h3 {
+      margin-top: 15px;
+      color: #00adee;
+    }
+
+    .card p {
+      margin: 10px 0;
+    }
+
+    .card button {
+      background: #00adee;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .card button:hover {
+      background: #008fbe;
+    }
+
+    footer {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+      color: #aaa;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="color:#00adee;">AutoDrive</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="models.html">Models</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="features.html">Features</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section id="models">
+    <h2>Explore Our Models</h2>
+    <div class="container">
+      <div class="card">
+        <img src="images/suv.jpg" alt="SUV">
+        <h3>SUV</h3>
+        <p>Powerful and versatile SUVs for any terrain.</p>
+        <button>Learn More</button>
+      </div>
+      <div class="card">
+        <img src="images/sedan.jpg" alt="Sedan">
+        <h3>Sedan</h3>
+        <p>Experience comfort and class with our sedans.</p>
+        <button>Learn More</button>
+      </div>
+      <div class="card">
+        <img src="images/sports.jpg" alt="Sports">
+        <h3>Sports</h3>
+        <p>Unmatched speed and performance in every turn.</p>
+        <button>Learn More</button>
+      </div>
+      <div class="card">
+        <img src="images/ev.jpg" alt="EV">
+        <h3>EV</h3>
+        <p>Clean, quiet, and powerful electric vehicles.</p>
+        <button>Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 AutoDrive. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>

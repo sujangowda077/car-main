@@ -1,0 +1,19 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Node/IDE files
+node_modules
+*.log
+.vscode
+.idea
+
+# Ignore Git and backup files
+.git
+.gitignore
+*.swp
+*.bak
+
+# Ignore deployment files
+Dockerfile
+Jenkinsfile

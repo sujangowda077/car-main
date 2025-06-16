@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AutoDrive - Explore the latest car models and features.">
+  <meta name="keywords" content="cars, auto, models, features, reviews">
+  <meta name="author" content="AutoDrive Team">
+  <title>AutoDrive - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #111;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; border-radius: 10px; }
+
+    header {
+      position: sticky; top: 0;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .logo {
+      color: #00adee;
+      font-size: 2rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px; /* Space between links */
+    }
+
+    nav a {
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00adee;
+    }
+
+    main {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #00adee;
+      animation: fadeInUp 1s ease;
+    }
+
+    #home {
+      background: url('images/lamborghini.jpg') center/cover no-repeat fixed;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    #home::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+      z-index: 1;
+    }
+
+    #home h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2; /* Bring text above overlay */
+    }
+
+    #home a {
+      background: #00adee;
+      padding: 15px 30px;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+      position: relative;
+      z-index: 2; /* Bring button above overlay */
+    }
+
+    #home a:hover {
+      background: #008fbe;
+    }
+
+    footer {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+      color: #aaa;
+      animation: fadeInUp 1s ease;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 10px;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      #home h2 {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Featured Models Section */
+    #featured-models {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #222;
+    }
+
+    .model-cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .model-card {
+      background: #333;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      transition: transform 0.3s;
+    }
+
+    .model-card:hover {
+      transform: scale(1.05);
+    }
+
+    .model-card img {
+      border-radius: 10px;
+    }
+
+    .model-card h3 {
+      margin: 10px 0;
+      font-family: 'Montserrat', sans-serif; /* Matching font style */
+      font-weight: 700; /* Bold font weight */
+    }
+
+    .model-card a {
+      background: #00adee;
+      padding: 10px;
+      color: #fff;
+      border-radius: 5px;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .model-card a:hover {
+      background: #008fbe;
+    }
+
+    /* Testimonials Section */
+    #testimonials {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #444;
+    }
+
+    .testimonial {
+      margin: 20px;
+      font-style: italic;
+    }
+
+    /* Contact Section */
+    #contact {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #222;
+    }
+
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #contact input, #contact textarea {
+      width: 300px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    #contact button {
+      background: #00adee;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #contact button:hover {
+      background: #008fbe;
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <h1 class="logo">AutoDrive</h1>
+    <nav role="navigation">
+      <a href="index.html">Home</a>
+      <a href="models.html">Models</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="features.html">Features</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <h2 class="fade-up">Welcome to AutoDrive</h2>
+    <a href="models.html" class="fade-up">Explore Models</a>
+  </main>
+
+  <section id="featured-models">
+    <h2>Top Supercars</h2>
+    <div class="model-cards">
+      <div class="model-card">
+        <img src="images/lamborghini-aventador.jpg" alt="Lamborghini Aventador">
+        <h3 class="car-name">Lamborghini Aventador</h3>
+        <p>A V12-powered beast delivering unmatched Italian styling and performance.</p>
+        <a href="lamborghini.html">Learn More</a>
+      </div>
+      <div class="model-card">
+        <img src="images/tesla-model-s.jpg" alt="Tesla Model S Plaid">
+        <h3 class="car-name">Tesla Model S Plaid</h3>
+        <p>Electric dominance with 0–60 in under 2 seconds and top tech features.</p>
+        <a href="tesla.html">Learn More</a>
+      </div>
+      <div class="model-card">
+        <img src="images/bugatti-chiron.jpg" alt="Bugatti Chiron">
+        <h3 class="car-name">Bugatti Chiron</h3>
+        <p>The epitome of speed and luxury — the hypercar benchmark.</p>
+        <a href="bugatti.html">Learn More</a>
+      </div>
+      <div class="model-card">
+        <img src="images/porsche-911.jpg" alt="Porsche 911 Turbo S">
+        <h3 class="car-name">Porsche 911 Turbo S</h3>
+        <p>A blend of timeless design and cutting-edge performance from Germany.</p>
+        <a href="porsche.html">Learn More</a>
+      </div>
+      <div class="model-card">
+        <img src="images/ferrari-sf90.jpg" alt="Ferrari SF90 Stradale">
+        <h3 class="car-name">Ferrari SF90 Stradale</h3>
+        <p>A plug-in hybrid supercar delivering both sustainability and thrill.</p>
+        <a href="ferrari.html">Learn More</a>
+      </div>
+      <div class="model-card">
+        <img src="images/mclaren-720s.jpg" alt="McLaren 720S">
+        <h3 class="car-name">McLaren 720S</h3>
+        <p>Extreme aerodynamics and British engineering in a track-ready body.</p>
+        <a href="mclaren.html">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial">
+      <p>"AutoDrive has transformed my driving experience! Highly recommend!" - Jane Doe</p>
+    </div>
+    <div class="testimonial">
+      <p>"The best car models I've ever driven. Exceptional quality!" - John Smith</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form action="contact.php" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer class="fade-up">
+    <p>&copy; 2025 AutoDrive. All rights reserved.</p>
+    <div>
+      <a href="https://facebook.com" target="_blank">Facebook</a> |
+      <a href="https://twitter.com" target="_blank">Twitter</a> |
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.fade-up, h2, footer, header h1').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
